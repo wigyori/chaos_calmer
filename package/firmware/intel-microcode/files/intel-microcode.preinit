@@ -1,0 +1,22 @@
+<<<<<<< HEAD
+#!/bin/sh
+# Copyright (C) 2018 OpenWrt.org
+
+do_load_intel_ucode() {
+	echo 1 > /sys/devices/system/cpu/microcode/reload
+}
+
+boot_hook_add preinit_main do_load_intel_ucode
+=======
+#!/bin/sh /etc/rc.common
+# (C) 2018 Zoltan HERPAI
+
+START=10
+IUCODE_BIN="/usr/bin/iucode_tool"
+
+load_intel_ucode() {
+	$IUCODE_BIN -S -k -v /lib/firmware/intel-ucode
+}
+
+boot_hook_add preinit_main load_intel_ucode
+>>>>>>> 74035c295e3fcc37b35bf5f077fa9ad9479b2019
